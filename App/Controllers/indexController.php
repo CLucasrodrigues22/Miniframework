@@ -2,17 +2,36 @@
 
 namespace App\Controllers;
 
-class IndexController {
+use MF\Controller\Action;
+use App\Connection;
+use App\Models\Produto;
+
+class IndexController extends Action {
 
 	public function index() {
 
-		echo 'Chegamos ao Index Controller e disparamos a action index';
+		//$this->view->dados = array('Sofá', 'Cadeira', 'Cama');
 
+		//instância de conexão
+		$conn = Connection::getDb();
+
+		//instanciar modelo
+		$produto = new Produto($conn);
+
+		$produtos = $produto->getProdutos();
+
+		@$this->view->dados = $produtos;
+
+		$this->render('index', 'layout1');
 	}
 
 	public function sobreNos() {
-
-		echo 'chegamos ao index controller e disparamos a action sobreNos';
-
+		
+		//$this->view->dados = array('Notebook', 'Smartphone');
+		$this->render('sobreNos', 'layout1');
 	}
+
 }
+
+
+?>
