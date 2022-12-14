@@ -1,10 +1,13 @@
 <?php
 
-	//ini_set('error_reporting', 'E_STRICT');
+    // require autoload.php for class
+    require_once "../vendor/autoload.php";
 
-	require_once "../vendor/autoload.php";
+    // use routes
+    use App\Route;
+    
+    $routes = new Route();
 
-	$route = new \App\Route;
-	
 
-?>
+
+    
